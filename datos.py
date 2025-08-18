@@ -102,3 +102,21 @@ def agregar_vehiculo(listaVehiculos, estado):
         print(f"✅ Vehículo {nuevo_vehiculo['id'][0]} agregado.")
         return True
     return False
+
+def generar_informe(informe):
+    print("\n📑 INFORME DEL PARQUEADERO 📑")
+    if not informe:
+        print("No hay actividades realizadas\n")
+        return
+
+    total_recaudado = 0
+    for i, registro in enumerate(informe, 1):
+        print(f"{i}. 🚗 {registro['placa']} | {registro['tipo']}")
+        print(f"   Entrada: {registro['hora_entrada']} - Salida: {registro['hora_salida']}")
+        print(f"   ⏱ Estancia: {registro['minutos']} minutos")
+        print(f"   💰 Tarifa: ${registro['tarifa']}\n")
+        total_recaudado += registro['tarifa']
+
+    print("="*40)
+    print(f"💵 Total recaudado: ${total_recaudado}")
+    print("="*40 + "\n")
