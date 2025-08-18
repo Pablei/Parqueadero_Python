@@ -21,7 +21,7 @@ def calcular_tarifa_total(tipo_vehiculo, minutos):
     total = fracciones * tarifa_por_fraccion
     return round(total)
 
-def registrar_salida(listaVehiculos, estado):
+def registrar_salida(listaVehiculos, estado, informe):
     placa = input("Ingrese la placa del vehículo que va a salir: ").upper().strip()
     if not placa:
         print("🚫 Placa no válida.")
@@ -40,6 +40,15 @@ def registrar_salida(listaVehiculos, estado):
             print(f"🕒 Salida: {hora_salida}")
             print(f"⏱ Estancia: {minutos} minutos")
             print(f"💰 Total a pagar: ${tarifa}\n")
+
+            informe.append({
+                "placa": placa,
+                "tipo": vehiculo['id'][1],
+                "hora_entrada": vehiculo['hora_entrada'],
+                "hora_salida": hora_salida,
+                "minutos": minutos,
+                "tarifa": tarifa
+            })
 
             if vehiculo['id'][1] == 'Automovil':
                 estado["celdas_automoviles"] += 1
